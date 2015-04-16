@@ -8,6 +8,8 @@ public class Controller : MonoBehaviour {
 	public GameObject winParticleEffect;
 	GameObject particleInstanciated;
 
+
+
 	void OnTriggerEnter(Collider other) {
 
 		speed = 0;
@@ -33,7 +35,9 @@ public class Controller : MonoBehaviour {
 	}
 
 
+
 	void Update () {
 		transform.Translate(Vector3.forward * Time.deltaTime*speed);
+
 	}
 }
