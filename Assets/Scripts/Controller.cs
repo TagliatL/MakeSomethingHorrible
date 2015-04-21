@@ -13,8 +13,8 @@ public class Controller : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 
 		speed = 0;
-		transform.Find ("RotationContainer").GetComponent<Rotation> ().speedRotation = 0;
-		transform.Find ("SpeedEffect").gameObject.SetActive (false);
+		transform.Find ("TheCard/RotationContainer").GetComponent<Rotation> ().speedRotation = 0;
+		transform.Find ("Main Camera/SpeedEffect").gameObject.SetActive (false);
 		GetComponent<GetMousePosition> ().enabled = false;
 		transform.parent = other.transform;
 
