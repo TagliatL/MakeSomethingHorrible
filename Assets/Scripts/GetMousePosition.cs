@@ -14,8 +14,8 @@ public class GetMousePosition : MonoBehaviour {
 	}
 
 	void Update() {
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit hit;
+		//Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		//RaycastHit hit;
 
 		//check for deadzone
 		Vector3 mouseFromCenter = Input.mousePosition - centerPos;
@@ -27,9 +27,9 @@ public class GetMousePosition : MonoBehaviour {
 		if (mouseFromCenter.magnitude < clampDistance ) {
 			mouseFromCenter = Vector3.zero;
 		}
-		else if (Physics.Raycast(ray, out hit, 1000))
+		else
 		{
-			Quaternion rotationOfShip = Quaternion.LookRotation(hit.point - transform.position);
+			Quaternion rotationOfShip = Quaternion.LookRotation(GameObject.Find("Main Camera").GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z+50)) - transform.position);
 			transform.rotation = Quaternion.Slerp(transform.rotation, rotationOfShip, Time.deltaTime * damping);
 		}
 

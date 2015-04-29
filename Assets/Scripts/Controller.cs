@@ -34,8 +34,6 @@ public class Controller : MonoBehaviour {
 	void Lose(GameObject objectHit) {
 	}
 
-
-
 	void Update () {
 		transform.Translate(Vector3.forward * Time.deltaTime*speed);
 
