@@ -15,17 +15,23 @@ public class Controller : MonoBehaviour {
 		speed = 0;
 		transform.Find ("TheCard/RotationContainer").GetComponent<Rotation> ().speedRotation = 0;
 		transform.Find ("Main Camera/SpeedEffect").gameObject.SetActive (false);
-		GetComponent<GetMousePosition> ().enabled = false;
-		transform.parent = other.transform;
+		//destroy the cursor and deactivate the detection of mouse
+		Destroy (GetComponent<GetMousePosition> ().cursor.gameObject);
 
+		GetComponent<GetMousePosition> ().enabled = false;
+		//this is why we put every obstacle in a GO
+		transform.parent = other.transform.parent;
 
 		if (other.tag == "Target") {
 			//Win(other.gameObject);
 			particleInstanciated = Instantiate (winParticleEffect, transform.position, transform.rotation)as GameObject;
-		} else {
+		} else /*if(other.tag == "Obstacle")*/ {
 			//Lose(other.gameObject);
+			GameObject.Find("Main Camera").transform.parent = null;
 			particleInstanciated = Instantiate (winParticleEffect, transform.position, transform.rotation)as GameObject;
 		}
+		//allow the camera to look to the player when he die or win
+		GameObject.Find("Main Camera").GetComponent<LookAtPlayer>().enabled = true;
 	}
 	
 	void Win(GameObject target){
