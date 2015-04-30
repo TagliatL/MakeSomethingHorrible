@@ -32,6 +32,7 @@ public class Controller : MonoBehaviour {
 		}
 		//allow the camera to look to the player when he die or win
 		GameObject.Find("Main Camera").GetComponent<LookAtPlayer>().enabled = true;
+		Cursor.visible = true;
 	}
 	
 	void Win(GameObject target){
