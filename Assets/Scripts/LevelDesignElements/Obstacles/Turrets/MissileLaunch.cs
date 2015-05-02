@@ -10,13 +10,15 @@ public class MissileLaunch : MonoBehaviour {
 	IEnumerator Launch() {
 		for(var i =0; i < numberOfMissiles; i++) {
 			Instantiate(missile, transform.position, Quaternion.identity);
-			missile.GetComponent<SmoothLookAt>().target = GameObject.FindGameObjectWithTag("Player").transform;
+			if(missile.GetComponent<SmoothLookAt>() !=null)
+			{
+				missile.GetComponent<SmoothLookAt>().target = GameObject.FindGameObjectWithTag("Player").transform;
+			}
 			yield return new WaitForSeconds (delayBetween);
 		}
 	}
-
-	void Update() {
-		if (Input.GetKeyDown ("space")) {
+	void OnTriggerEnter(Collider other) {
+		if(other.tag == "Player") {
 			StartCoroutine ("Launch");
 		}
 	}

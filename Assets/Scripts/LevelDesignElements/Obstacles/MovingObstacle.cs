@@ -19,7 +19,6 @@ public class MovingObstacle : Obstacles {
 		transform.Translate(Vector3.forward * Time.deltaTime*speed);
 		Quaternion followingPath = Quaternion.LookRotation(wayPoints[targetedWayPoint] - transform.position);
 		transform.rotation = Quaternion.Slerp(transform.rotation, followingPath, Time.deltaTime * rotationSpeed);
-		Debug.Log (targetedWayPoint);
 		if (Vector3.Distance(transform.position, wayPoints[targetedWayPoint]) < changeTargetDistance) {
 			targetedWayPoint += nextPoint;	
 			if(targetedWayPoint == wayPoints.Length){
