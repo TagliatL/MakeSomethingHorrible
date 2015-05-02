@@ -14,7 +14,9 @@ public class Controller : MonoBehaviour {
 
 		speed = 0;
 		transform.Find ("TheCard/RotationContainer").GetComponent<Rotation> ().speedRotation = 0;
-		transform.Find ("Main Camera/SpeedEffect").gameObject.SetActive (false);
+		if(GameObject.FindGameObjectWithTag("SpeedEffect") != null)
+			GameObject.FindGameObjectWithTag("SpeedEffect").SetActive (false);
+
 		//destroy the cursor and deactivate the detection of mouse
 		Destroy (GetComponent<GetMousePosition> ().cursor.gameObject);
 
