@@ -14,6 +14,7 @@ public class LookAtPlayerOnStart : MonoBehaviour {
 	void Update(){
 		if (timer < stopFollowingPlayer) {
 			timer++;
+			if(GameObject.FindGameObjectWithTag ("Player") != null)
 			transform.LookAt (GameObject.FindGameObjectWithTag ("Player").transform.position);
 		}
 	}

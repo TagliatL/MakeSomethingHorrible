@@ -4,16 +4,25 @@ using System.Collections;
 public class Controller : MonoBehaviour {
 
 	public float speed;
-	public GameObject particleCollisionEffect;
+	public GameObject target;
 	public GameObject winParticleEffect;
 	GameObject particleInstanciated;
 
-
+	void Win(){
+		GameObject.Find ("Main Camera").GetComponent<Camera> ().enabled = false;
+		GameObject.FindGameObjectWithTag("ExplosionCamera").GetComponent<Camera> ().enabled = true;
+		target.SetActive (false);
+	}
+	
+	void Lose() {
+		
+	}
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag != "TurretDetection") {
 			speed = 0;
 			transform.Find ("TheCard/RotationContainer").GetComponent<Rotation> ().speedRotation = 0;
+			GetComponent<Collider>().enabled = false;
 			if(GameObject.FindGameObjectWithTag("SpeedEffect") != null)
 				GameObject.FindGameObjectWithTag("SpeedEffect").SetActive (false);
 			
@@ -25,23 +34,16 @@ public class Controller : MonoBehaviour {
 			transform.parent = other.transform.parent;
 			
 			if (other.tag == "Target") {
-				//Win(other.gameObject);
 				particleInstanciated = Instantiate (winParticleEffect, transform.position, transform.rotation)as GameObject;
-			} else /*if(other.tag == "Obstacle")*/ {
-				//Lose(other.gameObject);
+				Invoke("Win",1.0f);
+			}else /*if(other.tag == "Obstacle")*/ {
+				Lose();
 				GameObject.Find("Main Camera").transform.parent = null;
-				particleInstanciated = Instantiate (winParticleEffect, transform.position, transform.rotation)as GameObject;
 			}
 			//allow the camera to look to the player when he die or win
 			GameObject.Find("Main Camera").GetComponent<LookAtPlayer>().enabled = true;
 			Cursor.visible = true;
 		}
-	}
-	
-	void Win(GameObject target){
-	}
-	
-	void Lose(GameObject objectHit) {
 	}
 
 	void Update () {
