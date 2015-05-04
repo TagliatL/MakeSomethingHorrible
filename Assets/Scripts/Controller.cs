@@ -6,11 +6,11 @@ public class Controller : MonoBehaviour {
 	public float speed;
 	public GameObject target;
 	public GameObject winParticleEffect;
+	public GameObject LevelManager;
 	GameObject particleInstanciated;
 
 	void Win(){
-		GameObject.Find ("Main Camera").GetComponent<Camera> ().enabled = false;
-		GameObject.FindGameObjectWithTag("ExplosionCamera").GetComponent<Camera> ().enabled = true;
+		LevelManager.SendMessage ("Win");
 		target.SetActive (false);
 	}
 	
