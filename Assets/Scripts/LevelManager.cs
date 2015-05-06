@@ -9,7 +9,8 @@ public class LevelManager : MonoBehaviour {
 	public GameObject FinishCamera;
 	public GameObject UIStart;
 	public GameObject UIGame;
-	public GameObject UIEndLevel;
+	public GameObject UIEndLevelLose;
+	public GameObject UIEndLevelWin;
 
 	void LaunchMission() {
 
@@ -30,10 +31,16 @@ public class LevelManager : MonoBehaviour {
 		//switch cameras
 		MainCamera.SetActive (false);
 		FinishCamera.SetActive (true);
+		UIEndLevelWin.SetActive (true);
+	}
+
+	void Lose() {
+		//switch cameras
+		UIEndLevelLose.SetActive (true);
 	}
 
 	void Start () {
-		Invoke ("LaunchMission", 2.0f);
+		Invoke ("LaunchMission", 3.0f);
 	}
 	
 	// Update is called once per frame

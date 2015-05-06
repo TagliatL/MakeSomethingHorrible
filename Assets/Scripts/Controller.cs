@@ -15,7 +15,7 @@ public class Controller : MonoBehaviour {
 	}
 	
 	void Lose() {
-		
+		LevelManager.SendMessage ("Lose");
 	}
 
 	void OnTriggerEnter(Collider other) {
