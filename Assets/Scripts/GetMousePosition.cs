@@ -23,7 +23,7 @@ public class GetMousePosition : MonoBehaviour {
 		cursor.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, cursor.transform.position.z);
 		
 		//"dead zone" in center % of screen's width
-		float clampDistance = Screen.width * 0.02f;
+		float clampDistance = Screen.width * 0.01f;
 		if (mouseFromCenter.magnitude < clampDistance ) {
 			mouseFromCenter = Vector3.zero;
 		}
