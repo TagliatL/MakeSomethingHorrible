@@ -7,6 +7,7 @@ public class GetMousePosition : MonoBehaviour {
 	public int divideDamping;
 	Vector3 centerPos;
 	public GameObject cursor;
+	public GameObject cursorCanExplode;
 
 	void Awake() {
 		centerPos = new Vector3(Screen.width/2f, Screen.height/2f, 0f);
@@ -21,6 +22,7 @@ public class GetMousePosition : MonoBehaviour {
 		Vector3 mouseFromCenter = Input.mousePosition - centerPos;
 		damping = mouseFromCenter.magnitude/divideDamping;
 		cursor.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, cursor.transform.position.z);
+		cursorCanExplode.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, cursor.transform.position.z);
 		
 		//"dead zone" in center % of screen's width
 		float clampDistance = Screen.width * 0.01f;

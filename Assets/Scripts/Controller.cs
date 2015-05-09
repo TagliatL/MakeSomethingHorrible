@@ -51,9 +51,31 @@ public class Controller : MonoBehaviour {
 		} else if (other.tag == "Collectible") {
 			collectiblesGot++;
 			if(collectiblesGot == allCollectiblesOfLevel) {
-				
+				GetComponent<GetMousePosition>().cursorCanExplode.SetActive(true);
 			}
 		}
+	}
+
+	void OnCollisionEnter(Collision collision) {
+		speed = 0;
+		GetComponent<Rigidbody>().velocity = Vector3.zero;
+		GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+		transform.Find ("TheCard/RotationContainer").GetComponent<Rotation> ().speedRotation = 0;
+		GetComponent<Collider> ().enabled = false;
+		if (GameObject.FindGameObjectWithTag ("SpeedEffect") != null)
+			GameObject.FindGameObjectWithTag ("SpeedEffect").SetActive (false);
+		
+		//destroy the cursor and deactivate the detection of mouse
+		Destroy (GetComponent<GetMousePosition> ().cursor.gameObject);
+		
+		GetComponent<GetMousePosition> ().enabled = false;
+		//this is why we put every obstacle in a GO
+		transform.parent = collision.transform.parent;
+		Lose ();
+		GameObject.Find ("Main Camera").transform.parent = null;
+		//allow the camera to look to the player when he die or win
+		GameObject.Find ("Main Camera").GetComponent<LookAtPlayer> ().enabled = true;
+		Cursor.visible = true;
 	}
 
 	void Update () {
