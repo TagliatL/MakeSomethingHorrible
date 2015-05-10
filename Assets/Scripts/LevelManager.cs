@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Text.RegularExpressions;
+
 
 public class LevelManager : MonoBehaviour {
 
@@ -27,11 +29,19 @@ public class LevelManager : MonoBehaviour {
 
 	}
 
+	
+	void UpdateProgression(int lastLevelWon) {
+		PlayerPrefs.SetInt ("NumberOfLevelWon", lastLevelWon);
+		//PlayerPrefs.SetInt("LastLevelShowed", 10);
+	}
+
 	void Win() {
 		//switch cameras
 		MainCamera.SetActive (false);
 		FinishCamera.SetActive (true);
 		UIEndLevelWin.SetActive (true);
+		//setTheProgressionOfThePlayer
+		UpdateProgression (int.Parse(Regex.Replace(Application.loadedLevelName, "[^0-9]", "")));
 	}
 
 	void Lose() {
