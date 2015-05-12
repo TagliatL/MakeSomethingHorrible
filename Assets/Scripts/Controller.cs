@@ -71,7 +71,13 @@ public class Controller : MonoBehaviour {
 		GetComponent<GetMousePosition> ().enabled = false;
 		//this is why we put every obstacle in a GO
 		transform.parent = collision.transform.parent;
-		Lose ();
+		if (collision.gameObject.tag == "Target" && collectiblesGot == allCollectiblesOfLevel) {
+			particleInstanciated = Instantiate (winParticleEffect, transform.position, transform.rotation)as GameObject;
+			Invoke ("Win", 1.0f);
+		} else { /*if(other.tag == "Obstacle")*/
+			Lose ();
+			GameObject.Find ("Main Camera").transform.parent = null;
+		}
 		GameObject.Find ("Main Camera").transform.parent = null;
 		//allow the camera to look to the player when he die or win
 		GameObject.Find ("Main Camera").GetComponent<LookAtPlayer> ().enabled = true;
