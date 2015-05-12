@@ -70,7 +70,7 @@ public class LevelManager : MonoBehaviour {
 	void Update () {
 
 		Vector3 mouseFromCenter = Input.mousePosition - centerPos;
-		float clampDistance = Screen.width * 0.01f;
+		float clampDistance = Screen.width * 0.02f;
 		if (readyToStart && mouseFromCenter.magnitude < clampDistance) {
 			Invoke("LaunchMission",0.5f);
 		}
