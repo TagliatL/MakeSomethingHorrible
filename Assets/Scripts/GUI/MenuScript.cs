@@ -5,30 +5,32 @@ using System.Collections;
 public class MenuScript : MonoBehaviour
 {
 	public Canvas quitMenu;
-	public Button startText;
-	public Button exitText;
+	public GameObject startText;
+	public GameObject exitText;
+	private Button startButton;
+	private Button exitButton;
 
 	// Use this for initialization
 	void Start ()
 	{
 		quitMenu = quitMenu.GetComponent<Canvas> ();
-		startText = startText.GetComponent<Button> ();
-		exitText = exitText.GetComponent<Button> ();
+		startButton = startText.GetComponent<Button> ();
+		exitButton = exitText.GetComponent<Button> ();
 		quitMenu.enabled = false;
 	}
 	
 	public void ExitPress()
 	{
 		quitMenu.enabled = true;
-		startText.enabled = false;
-		exitText.enabled = false;
+		startButton.enabled = false;
+		exitButton.enabled = false;
 	}
 
 	public void NoPress()
 	{
 		quitMenu.enabled = false;
-		startText.enabled = true;
-		exitText.enabled = true;
+		startButton.enabled = true;
+		exitButton.enabled = true;
 	}
 
 	public void StartLevel()
