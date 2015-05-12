@@ -13,7 +13,14 @@ public class LevelManager : MonoBehaviour {
 	public GameObject UIGame;
 	public GameObject UIEndLevelLose;
 	public GameObject UIEndLevelWin;
+	public GameObject LaunchText;
+	public GameObject LaunchImage;
+	bool readyToStart;
+	Vector3 centerPos;
 
+	void Awake() {
+		centerPos = new Vector3(Screen.width/2f, Screen.height/2f, 0f);
+	}
 	void LaunchMission() {
 
 		//active player
@@ -27,6 +34,12 @@ public class LevelManager : MonoBehaviour {
 		UIStart.SetActive (false);
 		UIGame.SetActive (true);
 
+	}
+
+	void LaunchMissionUI() {
+		LaunchText.SetActive (true);
+		LaunchImage.SetActive (true);
+		readyToStart = true;
 	}
 
 	
@@ -50,11 +63,16 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	void Start () {
-		Invoke ("LaunchMission", 3.0f);
+		Invoke ("LaunchMissionUI",2f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+		Vector3 mouseFromCenter = Input.mousePosition - centerPos;
+		float clampDistance = Screen.width * 0.01f;
+		if (readyToStart && mouseFromCenter.magnitude < clampDistance) {
+			Invoke("LaunchMission",0.5f);
+		}
 	}
 }
