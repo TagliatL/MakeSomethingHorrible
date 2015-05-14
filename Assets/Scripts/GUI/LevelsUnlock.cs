@@ -7,7 +7,7 @@ public class LevelsUnlock : MonoBehaviour {
 	public GameObject[] lockedLevels;
 
 	void Start () {
-		for (int i = 0; i < PlayerPrefs.GetInt ("NumberOfLevelWon"); i++) {
+		for (int i = 0; i < PlayerPrefs.GetInt ("NumberOfLevelWon")+1; i++) {
 			lockedLevels[i].gameObject.SetActive (false);
 			levels[i].gameObject.SetActive (true);
 		}
