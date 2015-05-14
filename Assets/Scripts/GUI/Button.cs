@@ -8,6 +8,6 @@ public class Button : MonoBehaviour {
 	}
 
 	void Menu() {
-		Application.LoadLevel ("MenuLevels");
+		Application.LoadLevel ("LevelSelection");
 	}
 }
