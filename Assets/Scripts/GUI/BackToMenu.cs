@@ -5,7 +5,7 @@ public class BackToMenu : MonoBehaviour {
 	public float time;
 
 	void ToMenu() {
-		Application.LoadLevel ("MenuLevels");
+		Application.LoadLevel ("LevelSelection");
 	}
 	void OnEnable() {
 		Invoke ("ToMenu", time);

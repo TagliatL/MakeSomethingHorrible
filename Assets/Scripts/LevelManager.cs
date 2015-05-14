@@ -44,10 +44,8 @@ public class LevelManager : MonoBehaviour {
 
 	
 	void UpdateProgression(int lastLevelWon) {
-		if (PlayerPrefs.GetInt ("NumberOfLevelWon") != 0) {
 			if(lastLevelWon > PlayerPrefs.GetInt ("NumberOfLevelWon"))
 				PlayerPrefs.SetInt ("NumberOfLevelWon", lastLevelWon);
-		}
 	}
 
 	void Win() {
